@@ -10,7 +10,7 @@ public class Types {
         // char     16 Bits     0               65535           uint16_t
         // float    32 Bits     IEEE754 binary32                float
         // double   64 Bits     IEEE754 binary64                double
-        // boolean  (8 Bits)    false           true            bool
+        // boolean  (8 Bits)    false           true            bool (_Bool)
         // boolean[] someBoolean = new boolean[1024]; // Array memory size (excluding overhead): 1024 bytes
         byte    myZeroByte     = 0;
         short   myZeroShort    = 0;
