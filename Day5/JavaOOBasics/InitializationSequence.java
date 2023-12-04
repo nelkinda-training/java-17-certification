@@ -1,24 +1,25 @@
 class Super {
-    {
-        System.out.println("Instance initializer of Super");
+    Super() {
+        System.out.println("Constructor of Super"); // 2.
     }
 
-    Super() {
-        System.out.println("Constructor of Super");
+    {
+        System.out.println("Instance initializer of Super"); // 1.
     }
 }
 
 class Sub extends Super {
-    {
-        System.out.println("Instance initializer of Sub");
-    }
-
     Sub() {
         // 1. super() unless java.lang.Object or unless explicit this() call
         // 2. instance initializers unless explicit this() call
         // 3. Remaining code of this constructor
-        System.out.println("Constructor of Sub");
+        System.out.println("Constructor of Sub"); // 4.
     }
+
+    {
+        System.out.println("Instance initializer of Sub"); // 3.
+    }
+
 }
 
 class Main {

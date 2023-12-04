@@ -1,0 +1,217 @@
+Which of the following primitive data types in Java is unsigned?
+
+A. byte
+
+B. short
+
+C. int
+
+D. char
+
+E. long
+
+Answer: D. char
+
+Explanation: The char data type in Java is the only primitive type that represents unsigned integers. It can store positive values from 0 to 65,535. The other types (byte, short, int, long) are signed and can represent both positive and negative values.
+
+
+1. What is the size of the float primitive data type in Java?
+
+A. 16 bits
+B. 32 bits
+C. 64 bits
+D. 128 bits
+
+Answer: B. 32 bits
+
+Explanation: The float data type in Java occupies 32 bits (4 bytes) of memory.
+
+2. Which primitive data type in Java is used to represent true/false values?
+
+A. boolean
+B. char
+C. byte
+D. int
+
+Answer: A. boolean
+
+Explanation: The boolean data type is used to represent true/false values in Java.
+
+3. What is the minimum value that can be stored in a variable of type short in Java?
+
+A. -32,768
+B. 0
+C. -2,147,483,648
+D. -9,223,372,036,854,775,808
+
+Answer: A. -32,768
+
+Explanation: The short data type in Java has a minimum value of -32,768.
+
+
+1. Which class in Java is used for reading text from a character-based input stream?
+
+A. FileInputStream
+B. BufferedReader
+C. DataInputStream
+D. FileReader
+
+Answer: B. BufferedReader
+
+Explanation: BufferedReader is commonly used for reading text from character-based input streams, providing efficient reading of characters, arrays, or lines.
+
+2. What is the purpose of the OutputStream class in Java?
+
+A. Reading text from a file
+B. Writing text to a file
+C. Reading binary data from a file
+D. Writing binary data to a file
+
+Answer: D. Writing binary data to a file
+
+Explanation: The OutputStream class in Java is used for writing binary data to an output stream, such as a file.
+
+3. Which method is used to write a string to a file using the PrintWriter class in Java?
+
+A. writeString()
+B. printString()
+C. write()
+D. println()
+
+Answer: D. println()
+
+Explanation: The println() method in PrintWriter is used to write a string to a file and then terminate the line.
+
+4. In Java, what is the purpose of the java.util.Scanner class?
+
+A. Reading binary data
+B. Reading formatted text
+C. Writing to a file
+D. Writing to the console
+
+Answer: B. Reading formatted text
+
+Explanation: Scanner is used for reading formatted input from various sources, including reading from the console or a file.
+
+5. Which class in Java is used for serializing and deserializing objects?
+
+A. ObjectStream
+B. Serializable
+C. ObjectSerializer
+D. ObjectInputStream
+
+Answer: D. ObjectInputStream
+
+Explanation: ObjectInputStream is used for deserializing objects, while ObjectOutputStream is used for serializing objects in Java.
+
+1. What class in the java.time package represents a date without a time component?
+
+A. LocalTime
+B. LocalDate
+C. LocalDateTime
+D. ZonedDateTime
+
+Answer: B. LocalDate
+
+Explanation: LocalDate represents a date without a time component.
+
+2. Which of the following classes represents a point in time with nanosecond precision?
+
+A. Instant
+B. Duration
+C. LocalTime
+D. Period
+
+Answer: A. Instant
+
+Explanation: Instant represents a point in time with nanosecond precision.
+
+3. How can you create a Duration object representing 5 hours in Java?
+
+A. Duration.ofMinutes(300)
+B. Duration.ofSeconds(18000)
+C. Duration.ofHours(5)
+D. Duration.ofDays(5)
+
+Answer: C. Duration.ofHours(5)
+
+Explanation: Duration.ofHours(5) creates a Duration object representing 5 hours.
+
+4. What method is used to format a LocalDateTime object as a string in Java?
+
+A. format()
+B. toString()
+C. print()
+D. toFormattedString()
+
+Answer: B. toString()
+
+Explanation: Calling toString() on a LocalDateTime object provides a default string representation.
+
+5. Which class represents a time zone in the java.time package?
+
+A. TimeZone
+B. DateTimeZone
+C. ZoneId
+D. TimeZoneId
+
+Answer: C. ZoneId
+
+Explanation: ZoneId represents a time zone in the java.time package.
+
+6. How can you obtain the current date and time in the default time zone using java.time?
+
+A. LocalDateTime.now()
+B. ZonedDateTime.now()
+C. OffsetDateTime.now()
+D. Instant.now()
+
+Answer: B. ZonedDateTime.now()
+
+Explanation: ZonedDateTime.now() gives the current date and time in the default time zone.
+
+7. Which class should you use to represent a duration of time between two Instant objects?
+
+A. Period
+B. Duration
+C. TimeInterval
+D. TimeSpan
+
+Answer: B. Duration
+
+Explanation: Duration is used to represent a duration of time between two Instant objects.
+
+8. How can you check if a LocalDate falls within a specific range in Java?
+
+A. isWithinRange()
+B. isBetween()
+C. isAfter()
+D. isBefore()
+
+Answer: B. isBetween()
+
+Explanation: You can use the isBetween() method to check if a LocalDate falls within a specific range.
+
+9. In Java, how can you handle daylight saving time changes when working with time zones?
+
+A. Manually adjust the time
+B. Use the DaylightSavingTime class
+C. Use ZoneOffset instead of ZoneId
+D. The java.time package automatically handles it
+
+Answer: D. The java.time package automatically handles it
+
+Explanation: The java.time package automatically adjusts for daylight saving time changes.
+
+10. Which method is used to convert a ZonedDateTime object to a different time zone in Java?
+
+A. toTimeZone()
+B. convertToTimeZone()
+C. withZoneSameInstant()
+D. changeTimeZone()
+
+Answer: C. withZoneSameInstant()
+
+Explanation: withZoneSameInstant() is used to convert a ZonedDateTime object to a different time zone while keeping the instant (point in time) the same.
+
+

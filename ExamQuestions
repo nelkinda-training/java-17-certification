@@ -1,0 +1,310 @@
+How many of the `Duration`, `LocalDateTime`, and `LocalTime` classes have the concept of a _time zone_?
+A. None
+B. One
+C. Two
+D. Three
+
+How many lines does this print?
+System.out.println("""
+    "ape"
+    "baboon"
+    "gorilla"
+    """);
+A. Three
+B. Four
+C. Five
+D> The code does not compile.
+
+Which of the following are not valid variable names? (Choose two.)
+A. `_`
+B. `_blue`
+C. `2blue`
+D. `blue$`
+E. `Blue`
+
+Which class has a `getSeconds()` method?
+A. Only the `Duration` class
+B. Only the `Period` class
+C. Both the `Duration` and `Period` classes
+D. Neither class
+
+Most of the United States observes daylight saving time on March 13, 2022, by moving the clocks forward an hour at 2am.
+What does the following code output?
+```
+var localDate = LocalDate.of(2022, 3, 13);
+var localTime = LocalTime.of(1, 0);
+var zone = ZoneId.of("America/New_York");
+var z = ZonedDateTime.of(localDate, localTime, zone);
+
+var offset = z.getOffset();
+var duration = Duration.ofHours(3);
+var later = z.plus(duration);
+
+System.out.println(later.getHour() + " " + offset.equals(later.getOffset()));
+```
+A. `4 false`
+B. `4 true`
+C. `5 false`
+D. `5 true`
+E. `6 false`
+F. `6 true`
+G. None of the above
+
+What is the value of `tip` after executing the following code snippet?
+```
+int meal = 5;
+int tip = 2;
+var total = meal + (meal>6 ? tip++ : tip--);
+```
+A. `1`
+B. `2`
+C. `3`
+D. `7`
+E. None of the above
+
+What does the following output?
+```
+int year = 1874;
+int month = Month.MARCH;
+int day = 24;
+LocalDate date = LocalDate.of(year, month, day);
+System.out.println(date.isBefore(LocalDate.now()));
+```
+A. `false`
+B. `true`
+C. The code does not compile.
+D. The code compiles but throws an exception at runtime.
+
+What is the output of the following?
+```
+var b = "12";
+var b += "3";
+b.reverse();
+System.out.println(b.toString());
+```
+A. `12`
+B. `21`
+C. `123`
+D. `321`
+E. The code does not compile.
+
+What is the output of the following?
+```
+var line = new StringBuilder("-");
+var anotherLine = line.append("-");
+System.out.print(line == anotherLine);
+System.out.print(" ");
+System.out.print(line.length());
+```
+A. `false 1`
+B. `false 2`
+C. `true 1`
+D. `true 2`
+E. It does not compile.
+
+Given that daylight saving time starts on March 13, 2022, at 2am, and clocks jump from 01:59 am to 03:00 am, which of the following can fill in the blank so the code doesn't throw an exception?
+```
+var localDate = LocalDate.of(2022, 3, 13);
+var localTime = LocalTime.of(____);
+var zone = ZoneId.of("America/New_York");
+var z = ZonedDateTime.of(localDate, localTime, zone);
+```
+A. `2, 0`
+B. `3, 0`
+C. Either of the above will run without throwing an exception.
+D. Both of these will cause an exception to be thrown.
+
+Which statement is true of this text block?
+```
+var block = """
+
+  green
+    yellow
+""";
+```
+A. There is only essential whitespace.
+B. There is only incidental whitespace.
+C. There is both essential and incidental whitespace.
+D. The code does not compile.
+
+What are the return types of `cat`, `moose`, and `penguin`, respectivel?
+```
+var cat = Math.ceil(65);
+var moose = Math.max(7, 8);
+vafr penguin = Math.pow(2, 3);
+```
+A. `double`, `double`, `double`
+B. `double`, `int`, `double`
+C. `double`, `int`, `int`
+D. `int`, `double`, `double`
+E. `int`, `int`, `double`
+F. `int`, `int`, `int`
+
+What is the result of the following?
+```
+var waffleDay = LocalDate.of(2022, Month.MARCH, 25);
+var period = Period.of(1, 6, 3);
+var later = waffleDay.plus(period);
+later.plusDays(1);
+var thisOne = LocalDate.of(2023, Month.SEPTEMBER, 28);
+var thatOne = LocalDate.of(2023, Month.SEPTEMBER, 29);
+System.out.println(later.isBefore(thisOne) + " " + later.isBefore(thatOne));
+```
+A. `false false`
+B. `false true`
+C. `true true`
+D. `true false`
+E. The code does not compile.
+
+Which operators work with one or more `boolean` types? (Choose three.)
+A. `^`
+B. `~`
+C. `&`
+D. `+`
+E. `||`
+F. `@`
+
+What is a possible output of the following?
+```
+var montyPythonDate = LocalDate.of(2023, Month.MAY, 10);
+var aprilFools = LocalDate.of(2023, Month.APRIL, 1);
+var duration = Duration.ofDays(1);
+var result = montyPythonDay.minus(duration);
+System.out.println(result + " " + aprilFools.isBefore(result));
+```
+A. `2023-05-09 false`
+B. `2023-05-09 true`
+C. The code does not compile.
+D. None of the above
+
+What is the output of the following?
+```
+var line = new String("-");
+var anotherLine = line.concat("-");
+System.out.print(line == anotherLine);
+Ststem.out.print(" ");
+System.out.print(line.length());
+```
+A. `false 1`
+B. `false 2`
+C. `true 1`
+D. `true 2`
+E. The code does not compile.
+
+How may of these lines contain a compiler error?
+```
+public void pi() {
+    byte b = 3.14;
+    double d = 3.14;
+    float f = 3.14;
+    short s = 3.14;
+}
+```
+A. None
+B. One
+C. Two
+D. Three
+E. Four
+
+In the United States, daylight saving time ends on November 6, 2022 at 02:00 am and we repeat the previous hour. What is the output of the following?
+```
+var localDate = LocalDate.of(2022, Month.NOVEMBER, 6);
+var lcoalTime = LocalTime.of(1, 0);
+var zone = ZoneId.of("America/New_York");
+var z = ZonedDateTime.of(localDate, localTime, zone);
+var offset = z.getOffset();
+for (int i = 0; i < 6; i++)
+    z.plusHours(i);
+
+System.out.print(z.getHour() + " " + offset,equals(z.getOffset()));
+```
+A. `5 false`
+B. `5 true`
+C. `6 false`
+D. `6 true`
+E. `7 false`
+F. `7 true`
+G. None of the above
+
+What does the following code output?
+```
+var baa = 8;
+var bleat = ~baa;
+var sheep = ~bleat;
+System.out.printf(bleaet + " " + sheep);
+```
+A. -8 8
+B. -8 9
+C. -9 8
+D. -9 9
+E. None of the above
+
+The author of thismethod forgot to include the data type. Which of the following reference types can best fill in the blank to complete this method?
+```
+public static void secret(________ mystery) {
+    char ch = mystery.charAt(3);
+    mystery = mystery.insert(1, "more");
+    int num = mystery.length();
+}
+```
+A. `String`
+B. `StringBuilder`
+C. Both
+D. Neither
+
+`LocalTime.of()` has a number of overloads. Which of the following is not one of them?
+A. `LocalTime.of(int hour, int minute)`
+B. `LocalTime.of(int hour, int minute, int second)`
+C. `LocalTime.of(int hour, int minute, int second, int nanoOfSecond)`
+D. `LocalTime.of(int hour, int minute, int second, int nanoOfSecond, int picoSeconds)`
+
+Which statements are true about the output of this code? (Choose three.)
+```
+var text = """
+   ant  antelope \s \n
+   cat "kitten" \
+   seal sea lion
+   """;
+```
+A. It contains two quotes.
+B. It contains eight quotes.
+C. It is three lines.
+D. One line is blank.
+E. Two lines are blank.
+F. The first line contains trailing whitespace.
+G. The first line does not contain trailing whitespace.
+
+Fill in the blanks: The operators ~=, ___, ___, ___, and ++ are listed in the same or increasing levels of operator precedence. (Choose two.)
+A. `==`, `*`, `!`
+B. `/`, `%`, `!`
+C. `*`, `--`, `*`
+D. `!`, `*`, `%`
+E. `+=`, `&&`, `*`
+F. `*`, `<`, `/`
+
+How many of the `LocalDate`, `Period`, and `ZonedDate` clases have a method to get the year?
+A. None
+B. One
+C. Two
+D. Three
+
+What is the possible output of this code?
+```
+var time = LocalTime.of(1, 2, 3, 4);
+System.out.println(time);
+```
+A. `01:02:03.4`
+B. `01:02:03.000000004`
+C. `01/01/1970 01:02:03.4`
+D. `01/01/1970 01:02:03.000000004`
+
+What is the output of the following?
+```
+var teams = new StringBuilder("333");
+teams.append(" 806");
+teams.append(" 1601");
+System.out.print(teams);
+A. `333`
+B. `333 806 1601`
+C. The code compiles but outputs something else.
+D. The code does not compile.
