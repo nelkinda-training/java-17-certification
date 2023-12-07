@@ -27,10 +27,10 @@ public class OddStuff {
         }
         {
             Clock clock = Clock.systemUTC();
+            Instant previous = Instant.now(clock);
             for (int i = 0; i < 1000000000; i++) {
-                Instant n1 = Instant.now(clock);
-                Instant n2 = Instant.now(clock);
-                if (n2.isBefore(n1)) {
+                Instant current = Instant.now(clock);
+                if (previous.isBefore(current)) {
                     System.err.println("Ooops"); // Will occasionally print on some machines!
                                                  // Why?
                                                  // Your computer time is running of a quartz.
@@ -38,6 +38,7 @@ public class OddStuff {
                                                  // Once your computer synchronizes time with a reliable source (like NTP),
                                                  // it updates the time and time might be reset.
                 }
+                previous = current;
             }
         }
     }

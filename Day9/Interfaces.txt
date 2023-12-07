@@ -1,0 +1,28 @@
+# Secondary value of software
+The primary value of software is its behavior,
+that it does what the current users currently need without any bugs, crashes, or delays.
+
+# Primary value of software
+The secondary value of software is softness of its structure,
+that it can tolerate and facilitate the ongoing change required to keep the secondary value high.
+
+# What is an interface?
+An interface is an element structure that serves the purpose of exposing behavior.
+
+# What is an adapter?
+An adapter converts from one interface to another interface.
+
+
+Controller, Repository
+GUI elements are views / view-controllers.
+A GUI element that triggers a change is a controller.
+The model is the internal representation of state.
+
+
++------------+ <- IF: HTTP/REST
+| Controller | <- Adapter between the network (for example HTTP/REST) and the business logic
++------------+ <- IF: Local method calls to trigger business logic
+|  Service   | <- Business Logic goes here
++------------+ <- IF: Local method calls to deal with persistance
+| Repository | <- Adapter between business logic/service and database
++------------+ <- IF: Database (for example SQL)

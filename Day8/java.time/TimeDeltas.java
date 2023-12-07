@@ -11,5 +11,10 @@ public class TimeDeltas {
         LocalDate d2 = LocalDate.ofInstant(i2, ZoneId.of("Asia/Kolkata"));
         Period p = Period.between(d1, d2);
         System.out.format("Period between %s and %s is %s%n", d1, d2, p);
+
+        Instant startOfMeeting = Instant.parse("2023-01-01T10:00:00Z");
+        Instant endOfMeeting = Instant.parse("2023-01-01T12:15:00Z");
+        Duration durationOfMeeting = Duration.between(startOfMeeting, endOfMeeting);
+        System.out.format("Duration between %s and %s is %s%n", startOfMeeting, endOfMeeting, durationOfMeeting);
     }
 }

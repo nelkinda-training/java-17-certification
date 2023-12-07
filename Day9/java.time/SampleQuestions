@@ -1,0 +1,176 @@
+How many of the `Duration`, `LocalDateTime`, and `LocalTime` classes have the concept of a _time zone_?
+A. None
+B. One
+C. Two
+D. Three
+
+Correct answer: A. None
+Duration is really just the time between two timestamps.
+
+
+Which class has a `getSeconds()` method?
+A. Only the `Duration` class
+B. Only the `Period` class
+C. Both the `Duration` and `Period` classes
+D. Neither class
+
+Correct answer: A. Only the Duration class. Duration is a time-based amount of time, such as 34.5 seconds, Period is a date-based amount of time, such as 4 months, 5 days.
+
+
+Most of the United States observes daylight saving time on March 13, 2022, by moving the clocks forward an hour at 2am.
+What does the following code output?
+```
+var localDate = LocalDate.of(2022, 3, 13);
+var localTime = LocalTime.of(1, 0);
+var zone = ZoneId.of("America/New_York");
+var z = ZonedDateTime.of(localDate, localTime, zone);
+
+var offset = z.getOffset();
+var duration = Duration.ofHours(3);
+var later = z.plus(duration);
+
+System.out.println(later.getHour() + " " + offset.equals(later.getOffset()));
+```
+A. `4 false`
+B. `4 true`
+C. `5 false`
+D. `5 true`
+E. `6 false`
+F. `6 true`
+G. None of the above
+
+Correct answer: C. 5 because the whole point of ZonedDateTime is to be daylight savings aware, and false because the offset changed as we crossed 2am.
+
+
+What does the following output?
+```
+int year = 1874;
+int month = Month.MARCH;
+int day = 24;
+LocalDate date = LocalDate.of(year, month, day);
+System.out.println(date.isBefore(LocalDate.now()));
+```
+A. `false`
+B. `true`
+C. The code does not compile.
+D. The code compiles but throws an exception at runtime.
+
+Correct answer: C. The code does not compile because Month.MARCH is of the Month enum, thus the declaration int month is wrong and has to be changed to Month month.
+
+
+Given that daylight saving time starts on March 13, 2022, at 2am, and clocks jump from 01:59 am to 03:00 am, which of the following can fill in the blank so the code doesn't throw an exception?
+```
+var localDate = LocalDate.of(2022, 3, 13);
+var localTime = LocalTime.of(____);
+var zone = ZoneId.of("America/New_York");
+var z = ZonedDateTime.of(localDate, localTime, zone);
+```
+A. `2, 0`
+B. `3, 0`
+C. Either of the above will run without throwing an exception.
+D. Both of these will cause an exception to be thrown.
+
+Correct answer: C. If we pass in 2, 0, it will be adjusted to 3, 0 for daylight savings.
+
+
+What is the result of the following?
+```
+var waffleDay = LocalDate.of(2022, Month.MARCH, 25);
+var period = Period.of(1, 6, 3);
+var later = waffleDay.plus(period);
+later.plusDays(1);
+var thisOne = LocalDate.of(2023, Month.SEPTEMBER, 28);
+var thatOne = LocalDate.of(2023, Month.SEPTEMBER, 29);
+System.out.println(later.isBefore(thisOne) + " " + later.isBefore(thatOne));
+```
+A. `false false`
+B. `false true`
+C. `true true`
+D. `true false`
+E. The code does not compile.
+
+Correct answer: B
+
+
+What is a possible output of the following?
+```
+var montyPythonDate = LocalDate.of(2023, Month.MAY, 10);
+var aprilFools = LocalDate.of(2023, Month.APRIL, 1);
+var duration = Duration.ofDays(1);
+var result = montyPythonDay.minus(duration);
+System.out.println(result + " " + aprilFools.isBefore(result));
+```
+A. `2023-05-09 false`
+B. `2023-05-09 true`
+C. The code does not compile.
+D. None of the above
+
+Correct answer: D The code compiles but it throws an exception because LocalDate does not support calculations with durations, it only supports calculations with periods.
+
+
+In the United States, daylight saving time ends on November 6, 2022 at 02:00 am and we repeat the previous hour. What is the output of the following?
+```
+var localDate = LocalDate.of(2022, Month.NOVEMBER, 6);
+var localTime = LocalTime.of(1, 0);
+var zone = ZoneId.of("America/New_York");
+var z = ZonedDateTime.of(localDate, localTime, zone);
+var offset = z.getOffset();
+for (int i = 0; i < 6; i++)
+    z.plusHours(1);
+
+System.out.print(z.getHour() + " " + offset.equals(z.getOffset()));
+```
+A. `5 false`
+B. `5 true`
+C. `6 false`
+D. `6 true`
+E. `7 false`
+F. `7 true`
+G. None of the above
+
+Answer: G. None of the above, z is not reassigned
+
+
+In the United States, daylight saving time ends on November 6, 2022 at 02:00 am and we repeat the previous hour. What is the output of the following?
+```
+var localDate = LocalDate.of(2022, Month.NOVEMBER, 6);
+var localTime = LocalTime.of(1, 0);
+var zone = ZoneId.of("America/New_York");
+var z = ZonedDateTime.of(localDate, localTime, zone);
+var offset = z.getOffset();
+for (int i = 0; i < 6; i++)
+    z = z.plusHours(1);
+
+System.out.print(z.getHour() + " " + offset.equals(z.getOffset()));
+```
+A. `5 false`
+B. `5 true`
+C. `6 false`
+D. `6 true`
+E. `7 false`
+F. `7 true`
+G. None of the above
+
+Answer: C we're going from 1 6 hours forward, repeating 2 am with two different time zone offsets
+
+
+`LocalTime.of()` has a number of overloads. Which of the following is not one of them?
+A. `LocalTime.of(int hour, int minute)`
+B. `LocalTime.of(int hour, int minute, int second)`
+C. `LocalTime.of(int hour, int minute, int second, int nanoOfSecond)`
+D. `LocalTime.of(int hour, int minute, int second, int nanoOfSecond, int picoSeconds)`
+
+Answer: D, there's no picoseconds resolution in the java.time API.
+
+
+What is the possible output of this code?
+```
+var time = LocalTime.of(1, 2, 3, 4);
+System.out.println(time);
+```
+A. `01:02:03.4`
+B. `01:02:03.000000004`
+C. `01/01/1970 01:02:03.4`
+D. `01/01/1970 01:02:03.000000004`
+
+
