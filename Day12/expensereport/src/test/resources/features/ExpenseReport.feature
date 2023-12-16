@@ -19,7 +19,7 @@ Feature: Characterization of ExpenseReport
       Total expenses: 15
       """
 
-  Scenario: Reports expenses over limit
+  Scenario: Certain expense types have limits.
     Given the following expenses:
       | type       | amount |
       | BREAKFAST  |   1001 |
@@ -42,10 +42,10 @@ Feature: Characterization of ExpenseReport
       Total expenses: 16003
       """
 
-  Scenario: A car rental does not have a limit
+  Scenario Template: Other exepense types do not have limits.
     Given the following expenses:
-      | type       |       amount |
-      | CAR_RENTAL |   2147483647 |
+      | type   |       amount |
+      | <type> |   2147483647 |
     When printing the expense report
     Then the report MUST look like this:
       """
@@ -54,3 +54,6 @@ Feature: Characterization of ExpenseReport
       Meal expenses: 0
       Total expenses: 2147483647
       """
+    Examples:
+      | type       |
+      | CAR_RENTAL |

@@ -6,12 +6,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 enum ExpenseType {
-    DINNER("Dinner", true, 5000),
-    BREAKFAST("Breakfast", true, 1000),
+    DINNER    ("Dinner",     true,  5000),
+    BREAKFAST ("Breakfast",  true,  1000),
     CAR_RENTAL("Car Rental", false, Integer.MAX_VALUE),
-    LUNCH("Lunch", true, 2000),
+    LUNCH     ("Lunch",      true,  2000),
     ;
 
     final String name;
@@ -25,15 +26,7 @@ enum ExpenseType {
     }
 }
 
-class Expense {
-    final ExpenseType type;
-    final int amount;
-
-    public Expense(final ExpenseType type, final int amount) {
-        this.type = type;
-        this.amount = amount;
-    }
-
+record Expense(ExpenseType type, int amount) {
     public boolean isMeal() {
         return type.isMeal;
     }
@@ -48,15 +41,15 @@ class Expense {
 }
 
 public class ExpenseReport {
-    public void printReport(List<Expense> expenses) {
+    public void printReport(final List<Expense> expenses) {
         printReport(expenses, new Date());
     }
 
-    public void printReport(List<Expense> expenses, Date timestamp) {
+    public void printReport(final List<Expense> expenses, final Date timestamp) {
         System.out.print(generateReport(expenses, timestamp));
     }
 
-    public String generateReport(List<Expense> expenses, Date timestamp) {
+    public String generateReport(final List<Expense> expenses, final Date timestamp) {
         return reportHeader(timestamp) + reportBody(expenses) + reportSummary(expenses);
     }
 
@@ -65,17 +58,15 @@ public class ExpenseReport {
     }
 
     public static String reportBody(final List<Expense> expenses) {
-        final StringBuilder sb = new StringBuilder();
-        for (Expense expense : expenses) {
-            sb.append(expenseDetail(expense));
-        }
-        return sb.toString();
+        return expenses.stream().map(ExpenseReport::expenseDetail).collect(Collectors.joining());
     }
 
     public static String expenseDetail(final Expense expense) {
-        final String expenseName = expense.getName();
-        final String mealOverExpensesMarker = expense.isOverLimit() ? "X" : " ";
-        return expenseName + "\t" + expense.amount + "\t" + mealOverExpensesMarker + "\n";
+        return expense.getName() + "\t" + expense.amount() + "\t" + expenseOverLimitMarker(expense) + "\n";
+    }
+
+    public static String expenseOverLimitMarker(final Expense expense) {
+        return expense.isOverLimit() ? "X" : " ";
     }
 
     public static String reportSummary(final List<Expense> expenses) {
@@ -95,7 +86,7 @@ public class ExpenseReport {
         return expenses
             .stream()
             .filter(filter)
-            .mapToInt(expense -> expense.amount)
+            .mapToInt(Expense::amount)
             .sum();
     }
 }
