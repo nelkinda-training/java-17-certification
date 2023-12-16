@@ -28,10 +28,16 @@ public class Lists {
             }
         });
 
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 5; i++) {
             final JFrame jframe = new JFrame("List");
             final JList<String> list = new JList<>(listModel);
             final JButton addButton = new JButton("Add");
+            addButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(final ActionEvent event) {
+                    listModel.addElement("New Entry");
+                }
+            });
             addButton.addActionListener(event -> {
                 listModel.addElement("New Entry");
             });
