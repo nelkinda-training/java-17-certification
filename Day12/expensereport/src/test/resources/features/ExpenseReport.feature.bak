@@ -1,0 +1,115 @@
+Feature: Characterization of ExpenseReport
+
+  Scenario: Empty report
+    Given an empty list of expenses
+    When printing the expense report
+    Then the report MUST look like this:
+      """
+      Expenses Fri Dec 15 10:30:00 CET 2023
+      Meal expenses: 0
+      Total expenses: 0
+      """
+
+  Scenario: Report with one dinner
+    Given the following expenses:
+      | type   | amount |
+      | DINNER |      1 |
+    When printing the expense report
+    Then the report MUST look like this:
+      """
+      Expenses Fri Dec 15 10:30:00 CET 2023
+      Dinner	1	 
+      Meal expenses: 1
+      Total expenses: 1
+      """
+
+  Scenario: Report with one breakfast
+    Given the following expenses:
+      | type      | amount |
+      | BREAKFAST |      1 |
+    When printing the expense report
+    Then the report MUST look like this:
+      """
+      Expenses Fri Dec 15 10:30:00 CET 2023
+      Breakfast	1	 
+      Meal expenses: 1
+      Total expenses: 1
+      """
+
+  Scenario: Report with one car rental
+    Given the following expenses:
+      | type       | amount |
+      | CAR_RENTAL |      1 |
+    When printing the expense report
+    Then the report MUST look like this:
+      """
+      Expenses Fri Dec 15 10:30:00 CET 2023
+      Car Rental	1	 
+      Meal expenses: 0
+      Total expenses: 1
+      """
+
+  Scenario: A breakfast over its limit is marked
+    Given the following expenses:
+      | type       | amount |
+      | BREAKFAST  |   1001 |
+    When printing the expense report
+    Then the report MUST look like this:
+      """
+      Expenses Fri Dec 15 10:30:00 CET 2023
+      Breakfast	1001	X
+      Meal expenses: 1001
+      Total expenses: 1001
+      """
+
+  Scenario: A dinner over its limit is marked
+    Given the following expenses:
+      | type       | amount |
+      | DINNER     |   5001 |
+    When printing the expense report
+    Then the report MUST look like this:
+      """
+      Expenses Fri Dec 15 10:30:00 CET 2023
+      Dinner	5001	X
+      Meal expenses: 5001
+      Total expenses: 5001
+      """
+
+  Scenario: A breakfast not over its limit is not marked
+    Given the following expenses:
+      | type       | amount |
+      | BREAKFAST  |   1000 |
+    When printing the expense report
+    Then the report MUST look like this:
+      """
+      Expenses Fri Dec 15 10:30:00 CET 2023
+      Breakfast	1000	 
+      Meal expenses: 1000
+      Total expenses: 1000
+      """
+
+  Scenario: A dinner not over its limit is not marked
+    Given the following expenses:
+      | type       | amount |
+      | DINNER     |   5000 |
+    When printing the expense report
+    Then the report MUST look like this:
+      """
+      Expenses Fri Dec 15 10:30:00 CET 2023
+      Dinner	5000	 
+      Meal expenses: 5000
+      Total expenses: 5000
+      """
+
+  Scenario: A car rental does not have a limit
+    Given the following expenses:
+      | type       |       amount |
+      | CAR_RENTAL |   2147483647 |
+    When printing the expense report
+    Then the report MUST look like this:
+      """
+      Expenses Fri Dec 15 10:30:00 CET 2023
+      Car Rental	2147483647	 
+      Meal expenses: 0
+      Total expenses: 2147483647
+      """

@@ -1,0 +1,13 @@
+# Gradle
+.gradle/
+build/
+
+# IntelliJ IDEA
+.idea
+*.iml
+
+# make
+.User.mk
+
+# Maven
+target/
