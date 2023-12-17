@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.summingInt;
 
 enum ExpenseType {
     DINNER    ("Dinner",     true,  5000),
@@ -58,7 +60,7 @@ public class ExpenseReport {
     }
 
     public static String reportBody(final List<Expense> expenses) {
-        return expenses.stream().map(ExpenseReport::expenseDetail).collect(Collectors.joining());
+        return expenses.stream().map(ExpenseReport::expenseDetail).collect(joining());
     }
 
     public static String expenseDetail(final Expense expense) {
@@ -86,7 +88,6 @@ public class ExpenseReport {
         return expenses
             .stream()
             .filter(filter)
-            .mapToInt(Expense::amount)
-            .sum();
+            .collect(summingInt(Expense::amount));
     }
 }
