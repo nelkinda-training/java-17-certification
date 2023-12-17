@@ -1,5 +1,16 @@
 Feature: Characterization of ExpenseReport
 
+  Scenario: Empty report
+    Given the following expenses:
+      | type       | amount |
+    When printing the expense report
+    Then the report MUST look like this:
+      """
+      Expenses Fri Dec 15 10:30:00 CET 2023
+      Meal expenses: 0
+      Total expenses: 0
+      """
+
   Scenario: Reports meals separately
     Given the following expenses:
       | type       | amount |

@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.DataTableType;
 
 import java.util.Date;
 import java.util.List;
@@ -23,18 +24,19 @@ public class CucumberTest {
     private List<Expense> expenses;
     private String actualOutput;
 
+    @DataTableType
+    public Expense expense(final Map<String, String> entry) {
+        return new Expense(ExpenseType.valueOf(entry.get("type")), Integer.parseInt(entry.get("amount")));
+    }
+
     @Given("an empty list of expenses")
     public void givenAnEmptyListOfExpenses() {
         expenses = List.of();
     }
 
     @Given("the following expenses:")
-    public void givenExpenses(final List<Map<String, String>> table) {
-        expenses = table.stream().map(this::mapToExpense).toList();
-    }
-
-    private Expense mapToExpense(Map<String, String> entry) {
-        return new Expense(ExpenseType.valueOf(entry.get("type")), Integer.parseInt(entry.get("amount")));
+    public void givenExpenses(final List<Expense> expenses) {
+        this.expenses = expenses;
     }
 
     @When("printing the expense report")
