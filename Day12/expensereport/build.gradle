@@ -70,7 +70,7 @@ dependencies {
 }
 
 jacoco {
-    toolVersion = "0.8.7"
+    toolVersion = "0.8.11"
 }
 
 jacocoTestCoverageVerification {
@@ -86,9 +86,9 @@ check.dependsOn jacocoTestCoverageVerification
 
 jacocoTestReport {
     reports {
-        xml.enabled true
-        csv.enabled true
-        html.enabled true
+        xml.required = true
+        csv.required = true
+        html.required = true
     }
 }
 test.finalizedBy jacocoTestReport
@@ -109,6 +109,6 @@ test {
 }
 
 wrapper {
-    gradleVersion '7.4.2'
+    gradleVersion '8.5'
     distributionType = Wrapper.DistributionType.ALL
 }
