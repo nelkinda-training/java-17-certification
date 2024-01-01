@@ -46,6 +46,6 @@ public class CucumberTest {
 
     @Then("the report MUST look like this:")
     public void theReportMustLookLike(final String expectedOutput) {
-        assertEquals(expectedOutput + "\n", actualOutput);
+        assertEquals(expectedOutput.translateEscapes() + "\n", actualOutput);
     }
 }

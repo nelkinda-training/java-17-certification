@@ -20,7 +20,7 @@ Feature: Characterization of ExpenseReport
       Then the report MUST look like this:
         """
         Expenses Fri Dec 15 10:30:00 CET 2023
-        <name>	1	 
+        <name>\t1\t\s
         Meal expenses: 1
         Total expenses: 1
         """
@@ -38,7 +38,7 @@ Feature: Characterization of ExpenseReport
       Then the report MUST look like this:
         """
         Expenses Fri Dec 15 10:30:00 CET 2023
-        Car Rental	1	 
+        Car Rental\t1\t\s
         Meal expenses: 0
         Total expenses: 1
         """
@@ -60,12 +60,12 @@ Feature: Characterization of ExpenseReport
       Then the report MUST look like this:
         """
         Expenses Fri Dec 15 10:30:00 CET 2023
-        Breakfast	1001	X
-        Breakfast	1000	 
-        Dinner	5001	X
-        Dinner	5000	 
-        Lunch	2001	X
-        Lunch	2000	 
+        Breakfast\t1001\tX
+        Breakfast\t1000\t\s
+        Dinner\t5001\tX
+        Dinner\t5000\t\s
+        Lunch\t2001\tX
+        Lunch\t2000\t\s
         Meal expenses: 16003
         Total expenses: 16003
         """
@@ -78,7 +78,7 @@ Feature: Characterization of ExpenseReport
       Then the report MUST look like this:
         """
         Expenses Fri Dec 15 10:30:00 CET 2023
-        <name>	2147483647	 
+        <name>\t2147483647\t\s
         Meal expenses: 0
         Total expenses: 2147483647
         """
