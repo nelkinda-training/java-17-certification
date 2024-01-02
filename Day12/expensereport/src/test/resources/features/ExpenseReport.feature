@@ -38,13 +38,14 @@ Feature: Characterization of ExpenseReport
       Then the report MUST look like this:
         """
         Expenses Fri Dec 15 10:30:00 CET 2023
-        Car Rental\t1\t\s
+        <name>\t1\t\s
         Meal expenses: 0
         Total expenses: 1
         """
       Examples:
         | type       | name       |
         | CAR_RENTAL | Car Rental |
+        | TRAIN_RIDE | Train Ride |
 
   Rule: Certain expense types have limits.
     Scenario: Certain expense types have limits.
@@ -85,3 +86,4 @@ Feature: Characterization of ExpenseReport
       Examples:
         | type       | name       |
         | CAR_RENTAL | Car Rental |
+        | TRAIN_RIDE | Train Ride |

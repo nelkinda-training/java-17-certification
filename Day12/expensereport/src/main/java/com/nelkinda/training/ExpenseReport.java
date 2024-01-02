@@ -15,6 +15,7 @@ enum ExpenseType {
     BREAKFAST ("Breakfast",  true,  1000),
     CAR_RENTAL("Car Rental", false, Integer.MAX_VALUE),
     LUNCH     ("Lunch",      true,  2000),
+    TRAIN_RIDE("Train Ride", false, Integer.MAX_VALUE),
     ;
 
     final String name;
