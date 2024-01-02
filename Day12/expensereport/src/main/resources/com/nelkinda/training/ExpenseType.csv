@@ -1,0 +1,6 @@
+type,name,isMeal,limit
+DINNER,Dinner,true,5000
+BREAKFAST,Breakfast,true,1000
+CAR_RENTAL,Car Rental,false,NULL
+LUNCH,Lunch,true,2000
+TRAIN_RIDE,Train Ride,false,NULL

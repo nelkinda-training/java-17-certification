@@ -1,22 +1,22 @@
 package com.nelkinda.training;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.io.UncheckedIOException;
 import java.util.Date;
 import java.util.List;
-import java.util.function.Predicate;
+import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
+import java.util.function.Predicate;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.summingInt;
+import static java.util.stream.Collectors.toUnmodifiableMap;
 
-enum ExpenseType {
-    DINNER    ("Dinner",     true,  5000),
-    BREAKFAST ("Breakfast",  true,  1000),
-    CAR_RENTAL("Car Rental", false, Integer.MAX_VALUE),
-    LUNCH     ("Lunch",      true,  2000),
-    TRAIN_RIDE("Train Ride", false, Integer.MAX_VALUE),
-    ;
+class ExpenseType {
+    private static final Map<String, ExpenseType> expenseTypes = loadExpenseTypes();
 
     final String name;
     final boolean isMeal;
@@ -26,6 +26,26 @@ enum ExpenseType {
         this.name = name;
         this.isMeal = isMeal;
         this.limit = limit;
+    }
+
+    private static Map<String, ExpenseType> loadExpenseTypes() {
+        try (final BufferedReader in = new BufferedReader(new InputStreamReader(ExpenseType.class.getResourceAsStream("ExpenseType.csv")))) {
+            return in
+                .lines()
+                .skip(1)
+                .map(it -> it.split(","))
+                .collect(toUnmodifiableMap(a -> a[0], a -> fromArray(a)));
+        } catch (final IOException e) {
+            throw new UncheckedIOException(e);
+        }
+    }
+
+    private static ExpenseType fromArray(final String[] a) {
+        return new ExpenseType(a[1], Boolean.valueOf(a[2]), "NULL".equals(a[3]) ? Integer.MAX_VALUE : Integer.valueOf(a[3]));
+    }
+
+    public static ExpenseType valueOf(final String type) {
+        return expenseTypes.get(type);
     }
 }
 
