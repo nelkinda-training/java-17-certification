@@ -1,0 +1,20 @@
+plugins {
+    id 'java-library'
+}
+
+group = 'com.nelkinda.training'
+version = '0.0.1-SNAPSHOT'
+description = 'maven-project-example'
+java.sourceCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+}
+
+test {
+    useJUnitPlatform()
+}
