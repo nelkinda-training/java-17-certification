@@ -52,14 +52,14 @@ public class ExpenseReport {
     }
 
     public String generateReport(final List<Expense> expenses, final Date timestamp) {
-        return reportHeader(timestamp) + reportBody(expenses) + reportSummary(expenses);
+        return header(timestamp) + body(expenses) + summary(expenses);
     }
 
-    public static String reportHeader(final Date timestamp) {
+    public static String header(final Date timestamp) {
         return "Expenses " + timestamp + "\n";
     }
 
-    public static String reportBody(final List<Expense> expenses) {
+    public static String body(final List<Expense> expenses) {
         return expenses.stream().map(ExpenseReport::expenseDetail).collect(joining());
     }
 
@@ -71,7 +71,7 @@ public class ExpenseReport {
         return expense.isOverLimit() ? "X" : " ";
     }
 
-    public static String reportSummary(final List<Expense> expenses) {
+    public static String summary(final List<Expense> expenses) {
         return "Meal expenses: " + sumMeals(expenses) + "\n" +
             "Total expenses: " + sumTotal(expenses) + "\n";
     }
