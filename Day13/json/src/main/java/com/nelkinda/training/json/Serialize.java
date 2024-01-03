@@ -9,12 +9,19 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import java.io.IOException;
 import java.time.Instant;
 
-class MyObject {
+class SuperClass {
+    String superField1;
+    String superField2;
+}
+
+class MyObject extends SuperClass {
     String field1;
-    int field2;
+    transient int field2;
     Instant field3;
 
-    MyObject() {}
+    MyObject() {
+        field2 = 43;
+    }
 
     MyObject(final String field1, final int field2, final Instant field3) {
         this.field1 = field1;
@@ -28,6 +35,8 @@ class MyObject {
                 "field1='" + field1 + '\'' +
                 ", field2=" + field2 +
                 ", field3=" + field3 +
+                ", superField1='" + superField1 + '\'' +
+                ", superField2='" + superField2 + '\'' +
                 '}';
     }
 }
@@ -60,7 +69,6 @@ class ReadObject {
         final String json = """
                 {
                     "field1": "Hello",
-                    "field2": 42,
                     "field3": "2020-05-31T12:34:56.789Z"
                 }
             """;
