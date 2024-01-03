@@ -3,20 +3,36 @@ package com.nelkinda.training;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.io.UncheckedIOException;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
+import java.util.function.Function;
 import java.util.function.Predicate;
+
+import static com.nelkinda.training.CsvLoader.loadExpenseTypes;
+import static java.lang.Boolean.parseBoolean;
+import static java.lang.Integer.MAX_VALUE;
+import static java.lang.Integer.parseInt;
+import static java.util.Objects.requireNonNull;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.summingInt;
 import static java.util.stream.Collectors.toUnmodifiableMap;
 
+class CsvLoader {
+    static <T> Map<String, T> loadExpenseTypes(final Function<String[], T> mapper) {
+        try (final var in = new BufferedReader(new InputStreamReader(requireNonNull(ExpenseType.class.getResourceAsStream("ExpenseType.csv"))))) {
+            return in
+                    .lines()
+                    .skip(1)
+                    .map(it -> it.split(","))
+                    .collect(toUnmodifiableMap(a -> a[0], mapper));
+        } catch (final IOException e) {
+            throw new UncheckedIOException(e);
+        }
+    }
+}
+
 class ExpenseType {
-    private static final Map<String, ExpenseType> expenseTypes = loadExpenseTypes();
+    private static final Map<String, ExpenseType> expenseTypes = loadExpenseTypes(ExpenseType::new);
 
     final String name;
     final boolean isMeal;
@@ -27,21 +43,8 @@ class ExpenseType {
         this.isMeal = isMeal;
         this.limit = limit;
     }
-
-    private static Map<String, ExpenseType> loadExpenseTypes() {
-        try (final BufferedReader in = new BufferedReader(new InputStreamReader(ExpenseType.class.getResourceAsStream("ExpenseType.csv")))) {
-            return in
-                .lines()
-                .skip(1)
-                .map(it -> it.split(","))
-                .collect(toUnmodifiableMap(a -> a[0], a -> fromArray(a)));
-        } catch (final IOException e) {
-            throw new UncheckedIOException(e);
-        }
-    }
-
-    private static ExpenseType fromArray(final String[] a) {
-        return new ExpenseType(a[1], Boolean.valueOf(a[2]), "NULL".equals(a[3]) ? Integer.MAX_VALUE : Integer.valueOf(a[3]));
+    private ExpenseType(final String... a) {
+        this(a[1], parseBoolean(a[2]), "NULL".equals(a[3]) ? MAX_VALUE : parseInt(a[3]));
     }
 
     public static ExpenseType valueOf(final String type) {
