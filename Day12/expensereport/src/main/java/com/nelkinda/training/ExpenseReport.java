@@ -14,12 +14,11 @@ import static java.lang.Integer.MAX_VALUE;
 import static java.lang.Integer.parseInt;
 import static java.util.Objects.requireNonNull;
 import static java.util.stream.Collectors.joining;
-import static java.util.stream.Collectors.summingInt;
 import static java.util.stream.Collectors.toUnmodifiableMap;
 
 class CsvLoader {
-    static <T> Map<String, T> loadExpenseTypes(final Function<String[], T> mapper) {
-        try (final var in = new BufferedReader(new InputStreamReader(requireNonNull(ExpenseType.class.getResourceAsStream("ExpenseType.csv"))))) {
+    static <T> Map<String, T> loadExpenseTypes(final Class<T> tClass, final Function<String[], T> mapper) {
+        try (final var in = new BufferedReader(new InputStreamReader(requireNonNull(tClass.getResourceAsStream(tClass.getSimpleName() + ".csv"))))) {
             return in
                     .lines()
                     .skip(1)
@@ -32,7 +31,7 @@ class CsvLoader {
 }
 
 class ExpenseType {
-    private static final Map<String, ExpenseType> expenseTypes = loadExpenseTypes(ExpenseType::new);
+    private static final Map<String, ExpenseType> expenseTypes = loadExpenseTypes(ExpenseType.class, ExpenseType::new);
 
     final String name;
     final boolean isMeal;
@@ -66,7 +65,8 @@ record Expense(ExpenseType type, int amount) {
     }
 }
 
-public class ExpenseReport {
+class ExpenseReport {
+    @SuppressWarnings("unused")
     public void printReport(final List<Expense> expenses) {
         printReport(expenses, new Date());
     }
@@ -110,8 +110,9 @@ public class ExpenseReport {
 
     public static int sum(final List<Expense> expenses, final Predicate<Expense> filter) {
         return expenses
-            .stream()
-            .filter(filter)
-            .collect(summingInt(Expense::amount));
+                .stream()
+                .filter(filter)
+                .mapToInt(Expense::amount)
+                .sum();
     }
 }
