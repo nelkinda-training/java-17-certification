@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.*;
 
 class Thing {
     private String name;
@@ -49,7 +50,7 @@ class Producer implements Runnable {
         final Thing newThing = new Thing("Thing " + ++count);
         synchronized (things) {
             things.add(newThing);
-            things.notify();
+            things.notify(); // Could also use notifyAll(), but would be slightly less efficient, as it would unnecessarily wake all Consumers.
         }
         pretendProductionIsExpensive();
     }
@@ -61,6 +62,11 @@ class Producer implements Runnable {
 class Main {
     public static void main(final String... args) {
         List<Thing> things = Collections.synchronizedList(new ArrayList<>());
+        // Stream
+        //     .of("c", "c", "p", "p")
+        //     .map(n -> "c".equals(n) ? new Consumer(things) : new Producer(things))
+        //     .parallel()
+        //     .forEach(Runnable::run);
         new Thread(new Consumer(things)).start();
         new Thread(new Consumer(things)).start();
         new Thread(new Producer(things)).start();

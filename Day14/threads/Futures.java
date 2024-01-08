@@ -16,10 +16,10 @@ public class Futures {
         try {
             System.out.println(completionService.take().get());
             System.out.println(completionService.take().get());
-            completionService.take();
+            // completionService.take(); // Blocks forever
         } catch (final ExecutionException e) {
             e.getCause().printStackTrace();
         }
-        service.awaitTermination(Long.MAX_VALUE, TimeUnit.SECONDS);
+        //service.awaitTermination(Long.MAX_VALUE, TimeUnit.SECONDS);
     }
 }
