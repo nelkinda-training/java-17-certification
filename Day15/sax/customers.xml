@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xsl-stylesheet href="customer.xsl" type="application/xslt+xml"?>
+<!DOCTYPE customers SYSTEM "customers.dtd">
+<customers>
+    <!-- A comment -->
+    <customer id="132c31b4-fc72-41e4-a78b-a986868a372b">
+        <name>Pallavi Jain</name>
+    </customer>
+    <customer id="2969a632-c23a-42a6-ba5b-74d82153b632">
+        <name>Amit Patil</name>
+    </customer>
+</customers>

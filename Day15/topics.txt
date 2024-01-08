@@ -1,0 +1,9 @@
+- XML Basic Syntax
+- XML Document Type Definitions
+- XML Schema
+- XML SAX API
+- XML DOM API
+- XML XPath API
+- XML XSLT API
+- Reading and Writing XML documents the DOM way
+- Jackson XML

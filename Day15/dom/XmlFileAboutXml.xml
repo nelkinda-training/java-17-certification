@@ -1,0 +1,12 @@
+<document>
+    <title>How to XML</title>
+    <chapter>
+        <title>Hello, world in XML</title>
+        <p>
+            This is an example for a <q>Hello, world!</q> file in XML.
+        </p>
+        <p>
+            <![CDATA[<hello>world</hello>]]>
+        </p>
+    </chapter>
+</document>

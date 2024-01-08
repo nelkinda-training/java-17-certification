@@ -1,0 +1,11 @@
+customers {
+    display: table;
+}
+customer {
+    display: table-row;
+}
+name {
+    display: table-cell;
+    font-family: sans-serif;
+    font-size: 20pt;
+}

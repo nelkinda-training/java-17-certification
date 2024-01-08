@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE customers SYSTEM "customers.dtd">
+<customers>
+    <customer id="18225163-b091-4247-aed8-00ffc15e36d6">
+        <name>Neha Kulkarni</name>
+    </customer>
+    <customer id="56863f75-f510-453c-9cb1-f7dc9ad64d38">
+        <name>John DaCosta</name>
+    </customer>
+</customers>

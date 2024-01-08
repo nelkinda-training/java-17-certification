@@ -1,0 +1,6 @@
+<!ELEMENT customers (customer+)>
+<!ELEMENT customer (name)>
+<!ATTLIST customer
+    id CDATA #REQUIRED
+>
+<!ELEMENT name (#PCDATA)>

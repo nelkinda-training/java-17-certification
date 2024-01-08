@@ -1,0 +1,14 @@
+{
+    "document": {
+        "title": "How to XML",
+        "chapter": {
+            "title": "Hello, world in XML",
+            "p": [
+                "This is an example for a ",
+                "q": "Hello, world!",
+                " file in XML."
+            ],
+            "p": "<hello>world</hello>"
+        }
+    }
+}
