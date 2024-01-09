@@ -1,4 +1,6 @@
+import com.nelkinda.training.java.modules.checksum.ChecksumService;
+
 module checksum {
     exports com.nelkinda.training.java.modules.checksum;
-    uses com.nelkinda.training.java.modules.checksum.ChecksumService;
+    uses ChecksumService;
 }
