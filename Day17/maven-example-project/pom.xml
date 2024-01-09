@@ -12,6 +12,7 @@
         <module>checksum</module>
         <module>checksum.xor</module>
         <module>checksum.add</module>
+        <module>tdd-example</module>
     </modules>
 
     <properties>
