@@ -13,6 +13,8 @@
         <module>checksum.xor</module>
         <module>checksum.add</module>
         <module>tdd-example</module>
+        <module>mod-on-classpath</module>
+        <module>mod-on-modpath</module>
     </modules>
 
     <properties>

@@ -1,12 +1,12 @@
 package com.nelkinda.training.java.modules.checksum.xor;
 
+import com.nelkinda.training.java.modules.checksum.AbstractChecksumService;
 import com.nelkinda.training.java.modules.checksum.Checksum;
 import com.nelkinda.training.java.modules.checksum.ChecksumService;
 
-public class XorChecksumService implements ChecksumService {
-    @Override
-    public boolean supports(final String algorithm) {
-        return "XOR".equals(algorithm);
+public class XorChecksumService extends AbstractChecksumService {
+    public XorChecksumService() {
+        super("XOR");
     }
 
     @Override

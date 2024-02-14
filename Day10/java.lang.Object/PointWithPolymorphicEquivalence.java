@@ -29,10 +29,9 @@ class Point {
         if (o == null) return false;
 
         // Can o belong to the same equivalence class by type?
-        if (!(o instanceof Point)) return false; // polymorphic equivalence - subclasses are in the same a equivalence class
+        if (!(o instanceof Point p)) return false; // polymorphic equivalence - subclasses are in the same a equivalence class
                                                  // Overriding equals() in subclass can break LSP or Object.equals() contract.
                                                  // Counter-measure: Make equals() and hashCode() inal.
-        Point p = (Point) o;
         return x == p.x && y == p.y;
     }
 

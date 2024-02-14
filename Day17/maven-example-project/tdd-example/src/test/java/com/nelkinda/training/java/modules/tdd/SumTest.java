@@ -20,7 +20,7 @@ public class SumTest {
         assertEquals(sum(42, 23), 65);
     }
 
-    public static int sum(int... numbers) {
+    public static int sum(final int... numbers) {
         int sum = 0;
         for (int number : numbers) {
             sum += number;

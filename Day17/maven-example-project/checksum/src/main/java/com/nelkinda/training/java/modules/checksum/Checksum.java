@@ -1,9 +1,14 @@
 package com.nelkinda.training.java.modules.checksum;
 
-import java.util.Iterator;
 import java.util.ServiceLoader;
 
+/**
+ * A checksum algorithm.
+ */
 public interface Checksum {
+    /** Update the checksum with the specified byte.
+     * @param b the byte to update the checksum with.
+     */
     void update(int b);
 
     byte[] digest();

@@ -40,8 +40,7 @@ final class Point {
 
     @Override
     public boolean equals(final Object o) {
-        if (o == null || !(o instanceof Point)) return false;
-        final Point p = (Point) o;
+        if (o == null || !(o instanceof final Point p)) return false;
         return x == p.x && y == p.y;
     }
 
